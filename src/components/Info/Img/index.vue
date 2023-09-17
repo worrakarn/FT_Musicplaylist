@@ -1,0 +1,12 @@
+<template>
+  <div class="col-md-4 index-0">
+    <img src="/music_playlist" alt="MusicPlaylist" class="img-fluid" />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'ImgMusic'
+})
+</script>

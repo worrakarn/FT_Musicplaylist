@@ -1,0 +1,29 @@
+.card-info {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.card-info-block {
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.card-gradient {
+  background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.img-music {
+  height: 200px;
+  width: 232px;
+  z-index: 0;
+}
+
+.index-0 {
+  z-index: 0;
+}

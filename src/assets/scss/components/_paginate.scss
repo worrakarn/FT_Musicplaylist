@@ -1,0 +1,70 @@
+$color_1: black;
+$color_2: white;
+$bg-paginate-color: transparent;
+$btn-paginate-color: black;
+$paginate-active: #808080;
+$paginate-hover: #d1c4c4;
+$btn-paginate-hover: rgb(45, 45, 45);
+$btn-paginate-active: rgb(85, 85, 85);
+
+.pagination {
+  .pagination-container {
+    column-gap: 10px;
+    align-items: center;
+  }
+  .paginate-buttons {
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: $bg-paginate-color;
+    border: none;
+    color: $color_2;
+  }
+  .back-button {
+    background-color: $btn-paginate-color;
+    color: $color_2;
+    border-radius: 8px;
+    height: 45px;
+    width: 45px;
+    svg {
+      transform: rotate(180deg) translateY(-2px);
+    }
+    &:hover {
+      background-color: $btn-paginate-hover;
+    }
+    &:active {
+      background-color: $btn-paginate-active;
+    }
+  }
+  .next-button {
+    background-color: $btn-paginate-color;
+    color: $color_2;
+    border-radius: 8px;
+    height: 45px;
+    width: 45px;
+    svg {
+      transform: translateY(2px);
+    }
+    &:hover {
+      background-color: $btn-paginate-hover;
+    }
+    &:active {
+      background-color: $btn-paginate-active;
+    }
+  }
+  .active-page {
+    background-color: $paginate-active;
+    &:hover {
+      background-color: $paginate-active;
+    }
+  }
+}
+.paginate-buttons {
+  img {
+    vertical-align: inherit;
+  }
+}
+svg {
+  vertical-align: inherit;
+}

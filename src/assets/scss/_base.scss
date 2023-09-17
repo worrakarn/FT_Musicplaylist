@@ -1,0 +1,49 @@
+:root {
+  --background: #{$dark};
+  --background-base: #{$dark-base};
+}
+
+body {
+  @include font-size-base;
+  font-family: $font-base-family;
+  background: var(--background);
+}
+
+// Font
+
+@font-face {
+  font-family: 'SFThonburi';
+  src: url('../font/SFThonburi/SFThonburi-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'SFThonburi';
+  src: url('../font/SFThonburi/SFThonburi-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'SFThonburi';
+  src: url('../font/SFThonburi/SFThonburi-Semibold.ttf');
+  font-weight: 600;
+}
+
+// Light SVG
+
+.light-svg {
+  filter: invert(100%) sepia(71%) saturate(0%) hue-rotate(206deg) brightness(106%) contrast(107%);
+}
+
+// Background color
+
+.bg-blue-light {
+  background-color: $blue-light;
+}
+
+.bg-blue {
+  background-color: $blue;
+}
+
+.bg-dark-base {
+  background-color: $dark-base;
+}

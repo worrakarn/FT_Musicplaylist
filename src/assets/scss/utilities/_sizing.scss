@@ -1,0 +1,31 @@
+.max-width-70 {
+  max-width: 4.375rem;
+
+  @include media-breakpoint-down(xl) {
+    max-width: 3.125rem;
+  }
+}
+
+.max-height-70 {
+  max-height: 4.375rem;
+
+  @include media-breakpoint-down(xl) {
+    max-height: 3.125rem;
+  }
+}
+
+.min-width-70 {
+  min-width: 4.375rem;
+
+  @include media-breakpoint-down(xl) {
+    min-width: 3.125rem;
+  }
+}
+
+.min-height-70 {
+  min-height: 4.375rem;
+
+  @include media-breakpoint-down(xl) {
+    min-height: 3.125rem;
+  }
+}

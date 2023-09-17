@@ -1,0 +1,19 @@
+@import 'variables';
+
+@import 'bootstrap/scss/_functions.scss';
+
+@import 'bootstrap/scss/_variables.scss';
+
+@import "bootstrap/scss/maps";
+
+@import "bootstrap/scss/mixins";
+
+@import "bootstrap/scss/utilities";
+
+@import 'bootstrap/scss/_mixins.scss';
+
+@import './utilities/main';
+
+@import 'base';
+
+@import './components/main';

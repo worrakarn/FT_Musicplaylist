@@ -1,0 +1,41 @@
+@mixin font-size-base {
+  font-size: $font-size-base;
+  @include media-breakpoint-down(xl) {
+    font-size: ($font-size-base * 0.875);
+  }
+}
+
+@each $name, $size in $font-sizes {
+  .font-#{$name} {
+    font-size: $size;
+
+    @include media-breakpoint-down(xl) {
+      font-size: ($size * 0.875);
+    }
+  }
+}
+
+// Text color
+.text-gray {
+  color: #b2b6c7 !important;
+}
+
+.text-gray-light {
+  color: #bdc4cc !important;
+}
+
+.text-dark {
+  color: #181c32 !important;
+}
+
+.text-blue {
+  color: $blue !important;
+}
+
+.text-nowarp {
+  white-space: nowrap;
+}
+
+.text-white {
+  color: #fff !important;
+}
