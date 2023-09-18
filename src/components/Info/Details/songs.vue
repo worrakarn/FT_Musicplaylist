@@ -1,10 +1,22 @@
 <template>
-  <div class="mt-auto">0 Songs</div>
+  <div class="mt-auto">{{ total }} Songs</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { usePlaylistStore } from '@/stores/playlist'
+import { defineComponent, computed } from 'vue'
 export default defineComponent({
-  name: 'SongsTotal'
+  name: 'SongsTotal',
+  setup() {
+    const playlistStore = usePlaylistStore()
+
+    const total = computed(() => {
+      return playlistStore.getTotal
+    })
+
+    return {
+      total
+    }
+  }
 })
 </script>

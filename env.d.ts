@@ -6,3 +6,5 @@ declare module '*.vue' {
 }
 
 declare module "vue-awesome-paginate";
+declare module "vue-toastification"
+declare module "lodash.debounce"

@@ -28,30 +28,36 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th class="text-center"><i class="fa fa-check" aria-hidden="true"></i></th>
-              <th>Shut Up and Dance</th>
-              <th>TALKING IS HARD</th>
-              <th>2015-08-09</th>
-              <th>3:19</th>
-            </tr>
-            <tr>
-              <th class="text-center"><i class="fa fa-plus" aria-hidden="true"></i></th>
-              <th>Cough Syrup</th>
-              <th>Young the Giant</th>
-              <th>2015-08-09</th>
-              <th>4:10</th>
+            <tr v-for="playlist in playlists" :key="playlist.id">
+              <th class="text-center">
+                <i
+                  v-if="playlist.is_my_playlist"
+                  class="fa fa-check cursor"
+                  aria-hidden="true"
+                  @click="deleteFormPlaylist(playlist)"
+                ></i>
+                <i
+                  v-else
+                  class="fa fa-plus cursor"
+                  aria-hidden="true"
+                  @click="add2Playlist(playlist)"
+                ></i>
+              </th>
+              <th class="text-nowarp">{{ playlist.title }}</th>
+              <th class="text-nowarp">{{ playlist.album }}</th>
+              <th>{{ moment(playlist.createdAt).format('DD/MM/YYYY') }}</th>
+              <th>{{ moment(playlist.createdAt).format('HH:mm') }}</th>
             </tr>
           </tbody>
         </table>
         <div class="d-flex flex-row-reverse">
-          <div class="pagination">
+          <div v-if="total > 0" class="pagination">
             <vue-awesome-paginate
-              :total-items="50"
+              :total-items="total"
               v-model="currentPage"
-              :items-per-page="5"
-              :max-pages-shown="5"
+              :items-per-page="limit"
               :showBreakpointButtons="false"
+              :on-click="onClickPage"
             >
               <template #prev-button>
                 <span>
@@ -89,16 +95,90 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { usePlaylistStore } from '@/stores/playlist'
+import { defineComponent, ref, onMounted, computed, watch } from 'vue'
+import moment from 'moment'
+import type IPlaylist from '@/interfaces/playlist'
+import { playlistAdd, playlistDelete } from '@/services/api'
+import { useRoute } from 'vue-router'
+import { isBoolean } from 'lodash'
+import debounce from 'lodash.debounce'
+
 export default defineComponent({
   name: 'MusicList',
   setup() {
+    const route = useRoute()
     const search = ref<string>()
+    const owner = ref<boolean>(false)
     const currentPage = ref<number>(1)
+    const limit = ref<number>(10)
+
+    const playlistStore = usePlaylistStore()
+
+    const playlists = computed(() => {
+      return playlistStore.getPlaylists
+    })
+
+    const total = computed(() => {
+      return playlistStore.getTotal
+    })
+
+    const fetchData = () => {
+      playlistStore.fetchPlaylists({
+        title: search.value,
+        owner: owner.value,
+        page: currentPage.value - 1,
+        limit: limit.value
+      })
+    }
+
+    watch(
+      search,
+      debounce(() => {
+        fetchData()
+      }, 500)
+    )
+
+    onMounted(() => {
+      if (isBoolean(route.meta.owner)) {
+        owner.value = route.meta.owner
+      }
+      fetchData()
+    })
+
+    const onClickPage = (page: number) => {
+      currentPage.value = page
+      fetchData()
+    }
+
+    const add2Playlist = (playlist: IPlaylist) => {
+      playlistAdd(Number(playlist.id)).then((e: IPlaylist[] | boolean) => {
+        if (e) {
+          playlist.is_my_playlist = !playlist.is_my_playlist
+          playlistStore.updatePlaylist(playlist)
+        }
+      })
+    }
+
+    const deleteFormPlaylist = (playlist: IPlaylist) => {
+      playlistDelete(Number(playlist.id)).then((e: IPlaylist[] | boolean) => {
+        if (e) {
+          playlist.is_my_playlist = !playlist.is_my_playlist
+          playlistStore.updatePlaylist(playlist)
+        }
+      })
+    }
 
     return {
       search,
-      currentPage
+      currentPage,
+      total,
+      limit,
+      onClickPage,
+      playlists,
+      moment,
+      add2Playlist,
+      deleteFormPlaylist
     }
   }
 })

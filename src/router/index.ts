@@ -6,12 +6,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import("../views/HomeView.vue"),
+      component: () => import('../views/HomeView.vue'),
+      meta: { owner: false }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
+      path: '/owner_playlist',
+      name: 'owner_playlist',
+      component: () => import('../views/OwnPlaylistView.vue'),
+      meta: { owner: true }
     }
   ]
 })
