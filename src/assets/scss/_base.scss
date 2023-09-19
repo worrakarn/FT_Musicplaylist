@@ -3,30 +3,15 @@
   --background-base: #{$dark-base};
 }
 
+// Font 
+
+@import url('https://fonts.googleapis.com/css?family=Bai%20Jamjuree');
+
 body {
   @include font-size-base;
   font-family: $font-base-family;
   background: var(--background);
 }
-
-// Font
-
-// @font-face {
-//   font-family: 'SFThonburi';
-//   src: url('../font/SFThonburi/SFThonburi-Regular.ttf');
-// }
-
-// @font-face {
-//   font-family: 'SFThonburi';
-//   src: url('../font/SFThonburi/SFThonburi-Bold.ttf');
-//   font-weight: bold;
-// }
-
-// @font-face {
-//   font-family: 'SFThonburi';
-//   src: url('../font/SFThonburi/SFThonburi-Semibold.ttf');
-//   font-weight: 600;
-// }
 
 // Light SVG
 
