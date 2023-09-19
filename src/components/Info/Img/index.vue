@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-4 index-0">
-    <img src="/music_playlist" alt="MusicPlaylist" class="img-fluid" />
+    <img src="@/assets/img/music_playlist.jpg" alt="MusicPlaylist" class="img-fluid" />
   </div>
 </template>
 

@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  playlist:
+    build: .
+    container_name: playlist
+    ports:
+      - "80:80"
+    restart: 'unless-stopped'
+    networks:
+      - playlist
+
+networks:
+  playlist:
+    name: playlist
+    driver: bridge
